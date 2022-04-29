@@ -1,0 +1,36 @@
+@startuml SD_1.0
+
+left header
+<font color=000 size=18><b>Package:</b> SD_1.0
+
+<font color=000 size=16><b>ID:</b> UC_1
+<font color=000 size=16><b>Название:</b> Покупка ж/д билета
+<font color=000 size=16><b>Участники:</b> Пассажир, Система
+<font color=000 size=16><b>Результат:</b> Билет пассажира
+<font color=000 size=16><b>Исключительные ситуации:</b>
+<font color=000 size=16> EX_1.1 Маршрут отсутствует
+<font color=000 size=16> EX_1.2 Пассажир не выбрал место
+<font color=000 size=16><b>Основной сценарий:</b>
+
+end header
+actor "Пассажир" as user
+control "Система" as system
+autonumber
+user->system: индентификатор маршрута
+activate system
+note right system #aaffaa
+<font color=red><b> Возможно EX_1.1.
+end note
+
+system --> user:свободные места в составе
+deactivate system
+note over system, user #LightBlue
+<font color=red><b> Возможно EX_1.2.
+end note
+user ->system: выбранные места в составе
+activate system
+system ->system: внесение данных\nо билете в БД
+system --> user :<b>описание выбраного билета
+deactivate system
+
+@enduml

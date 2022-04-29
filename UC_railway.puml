@@ -1,0 +1,43 @@
+@startuml UCD_1.0
+
+right header
+<font size=24 color=black>Package: <b>UCD_1.0
+
+end header
+
+title
+<font size=18 color=black>Железная дорога
+end title
+
+actor "Пассажир"  as User #lightBlue
+actor "Администратор\nжелезной дороги" as Admin 
+
+usecase "<b>UC_1</b>\nПокупка ж/д билета" as UC_1  #lightBlue
+usecase "<b>UC_2</b>\nПрсомотр доступных\nмаршрутов" as UC_2  #lightBlue
+usecase "<b>UC_1.1</b>\nНачисление бонусов" as UC_1.1
+usecase "<b>UC_1.2</b>\nСписание бонусов" as UC_1.2
+usecase "<b>UC_3</b>\nАвторизация" as UC_3
+usecase "<b>UC_4</b>\nПросмотр\nбилета" as UC_4
+usecase "<b>UC_5</b>\nПрсомотр\nприобретенных билетов" as UC_5
+
+usecase "<b>UC_6</b>\nПросмотр продаж\nна маршрутах" as UC_6
+usecase "<b>UC_7</b>\nСоставления и изменения\nмаршрутов" as UC_7
+usecase "<b>UC_8</b>\nИзменение\nскидок" as UC_8
+
+User --> UC_1
+User --> UC_2
+User -> UC_3
+User -u-> UC_4
+User -l-> UC_5
+
+UC_1 ..> UC_1.1
+UC_1 ..> UC_1.2
+UC_2 .> UC_1
+
+Admin --|> User
+
+Admin -u->UC_6
+Admin -u->UC_7
+Admin -u->UC_8
+
+@enduml
